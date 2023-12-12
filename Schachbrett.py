@@ -61,14 +61,14 @@ class Schachbrett:
 def main():    # nur ein Test der Klasse
     
     print("Hello Schachbrett")
-    zug = Zug(("a",1),("a",4))
+    zug = Zug(("a",1),("c",4))
     
     schachbrett = Schachbrett()
     
     schachbrett.anzeigen()
 #    print(schachbrett.schachbrett[(1,1)].get_position())
 #    print(schachbrett.schachbrett[(0,0)])
-    schachbrett.schachbrett[(1,1)].bewegen(zug, schachbrett)
+    schachbrett.schachbrett[0,1].bewegen(zug, schachbrett)         # bedeutet figur von position a,2 wird zu 
 #    print(schachbrett.schachbrett[(1,1)].get_position())
     
     schachbrett.anzeigen()

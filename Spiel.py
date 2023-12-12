@@ -1,6 +1,7 @@
 from Spieler import Spieler
 from Schachbrett import Schachbrett
 from Spielregeln import Spielregeln
+from Schachfigur import Schachfigur
 from Zug import Zug
 
 
@@ -43,7 +44,11 @@ class Spiel:
                 zug_string = input(f"|{spieler.get_name()}| gebe einen Zug ein (Start Ziel): ")
                 start_pos, ziel_pos = self.__eingabe_regelkonform(zug_string)
                 zug = Zug(start_pos, ziel_pos)
+                
                 self.spielregeln.ist_regelkonformer_zug(zug)
+                
+                self.schachbrett.schachbrett[0,1].bewegen(zug, self.schachbrett)   # das 0,1 sagt welche figur gezogen werden soll. 
+                
                 break
             except ValueError:
                 print("Ungültige Eingabe.  Try again...")

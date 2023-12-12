@@ -19,7 +19,9 @@ class Schachfigur():
         
     def bewegen(self, zug, schachbrett):
         ziel_pos = self.__zug2xycorr(zug.ziel)
+#        print(ziel_pos)
         start_pos = self.__zug2xycorr(zug.start)
+#        print(start_pos)
 
         schachbrett.schachbrett[ziel_pos] = schachbrett.schachbrett[start_pos]
         del schachbrett.schachbrett[start_pos]
