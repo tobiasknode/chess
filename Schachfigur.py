@@ -1,13 +1,23 @@
 
-
-
-
-class spielfigur:
+class Name:
     
-    def __init__(self, farbe, typ, position):
+    def __init__(self,name):
+        self.name = name
+        
+    
+  
+
+
+class Schachfigur():
+    
+    def __init__(self, farbe, name):
         self.farbe = farbe                             # weiß oder schwarz
-        self.typ = typ                                 # Bauer, Springer, Turm etc...
-        self.position = position                       # touple (x,y) Koordinaten
+        self.name = name                                 # Bauer, Springer, Turm etc...
+#        self.position = position                       # touple (x,y) Koordinaten
+        
+    def __repr__(self):
+        
+        return self.name
         
     def bewegen(self, neue_position):
         self.position = neue_position
@@ -25,7 +35,7 @@ def main():    # nur ein Test der Klasse
     start_position = (1,2)
     farbe = "Weiß"
     
-    bauer = spielfigur(farbe, "Bauer", start_position)
+    bauer = schachfigur(farbe, "Bauer", start_position)
     
     # Test eines Spielzugs
     
@@ -33,5 +43,6 @@ def main():    # nur ein Test der Klasse
     bauer.bewegen((1,3))
     print(f"Neue Position: {bauer.position}")
     
-    
-main()
+
+if __name__=='__main__':
+    main()
