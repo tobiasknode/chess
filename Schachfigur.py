@@ -14,8 +14,7 @@ class Schachfigur():
         return self.symbol
         
     def bewegen(self, zug):
-        neue_position=self.__zug2xycorr(zug.ziel)
-        self.position = neue_position
+        self.position = self.__zug2xycorr(zug.ziel)
        # print(f"{self.farbe} {self.typ} bewegt sich nach {zug.ziel}")
     def __zug2xycorr(self,zug):
         """
