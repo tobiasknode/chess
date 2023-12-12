@@ -5,6 +5,7 @@ class Spielregeln:
     def ist_regelkonformer_zug(self, zug):
         # Hier würde die Logik implementiert, um zu überprüfen, ob ein Zug regelkonform ist.
         # Dies würde die Überprüfung der Bewegungsregeln für die spezifische Schachfigur beinhalten.
+        
         pass
 
     def ist_schach(self, spieler):
