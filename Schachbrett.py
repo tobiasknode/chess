@@ -6,6 +6,8 @@ from Schachfigur import Läufer
 from Schachfigur import König
 from Schachfigur import Dame
 
+from Zug import Zug     # nur zum test der main()
+
 
 class Schachbrett:
     
@@ -59,9 +61,15 @@ class Schachbrett:
 def main():    # nur ein Test der Klasse
     
     print("Hello Schachbrett")
-
+    zug = Zug(("a",1),"a",2))
     
     schachbrett = Schachbrett()
+    
+    schachbrett.anzeigen()
+    print(schachbrett.schachbrett[(1,1)].get_position())
+    print(schachbrett.schachbrett[(0,0)])
+    schachbrett.schachbrett[(1,1)].bewegen(zug)
+    print(schachbrett.schachbrett[(1,1)].get_position())
     
     schachbrett.anzeigen()
     

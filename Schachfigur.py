@@ -12,10 +12,15 @@ class Schachfigur():
     def __repr__(self):
         
         return self.symbol
+    
+    def get_position(self):
+        
+        return self.position
         
     def bewegen(self, zug):
         self.position = self.__zug2xycorr(zug.ziel)
        # print(f"{self.farbe} {self.typ} bewegt sich nach {zug.ziel}")
+       
     def __zug2xycorr(self,zug):
         """
         Zug in der Form "b4" wird in (2,4) umgewandelt
@@ -23,8 +28,10 @@ class Schachfigur():
         a ist in ASCII 97, b ist 98, c ist 99 usw.
         Dadurch wird aus a=1, b=2, c=3 ... h=8. 
         """
-        x = ord(zug[0])-96
+        x = ord(zug[0])-97
+        print("x: ",x)
         y = zug[1]
+        print("y: ",y)
         return (x,y)
 class Bauer(Schachfigur):
     
@@ -92,7 +99,7 @@ def main():    # nur ein Test der Klasse
     # Test eines Spielzugs
     
     print(f"Ausgangsposition: {bauer.position}")
-    zug=Zg.Zug(("c",4),("c",5))
+    zug=Zg.Zug(("a",4),("a",5))
     print(f"Zug: {zug}")
     bauer.bewegen(zug)
     print(f"Neue Position: {bauer.position}")
