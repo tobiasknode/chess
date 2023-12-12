@@ -64,14 +64,17 @@ class Spiel:
         Überprüft, ob die Eingabe regelkonform ist.
         """
         char_list = ["a", "b", "c", "d", "e", "f", "g", "h"]
+
+        #Remove whitespaces
+        zug_string = zug_string.replace(" ", "")
         # Überprüfe die Länge des Strings
-        if  zug_string is None or len(zug_string) != 5:
+        if  zug_string is None or len(zug_string) != 4:
             raise ValueError("Ungültige Eingabe")
-        
+        print(zug_string)
         # Parse tuple
-        zug_tupel = self.__str2Tuple(zug_string)
-        start_tuple = zug_tupel[0][0], int(zug_tupel[0][1])
-        ziel_tuple = zug_tupel[1][0], int(zug_tupel[1][1]) 
+        zug_tupel = zug_string
+        start_tuple = zug_tupel[0], int(zug_tupel[1])
+        ziel_tuple = zug_tupel[2], int(zug_tupel[3])
         # Überprüfe die einzelnen Elemente des Tuples
         if start_tuple[0] not in char_list or ziel_tuple[0] not in char_list:
             raise ValueError("Ungültige Eingabe")
