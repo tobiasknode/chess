@@ -1,7 +1,10 @@
 from Schachfigur import Schachfigur
-#from Schachfigur import Name
-
-
+from Schachfigur import Bauer
+from Schachfigur import Turm
+from Schachfigur import Springer
+from Schachfigur import Läufer
+from Schachfigur import König
+from Schachfigur import Dame
 
 
 class Schachbrett:
@@ -11,8 +14,7 @@ class Schachbrett:
         self.schachbrett = {}
 
         self.setzen_figuren_schachbrett()   # Die Methode wird direkt ausgeführt 
-        
-              
+                    
     def entferne_schachfigur(self):
         pass
     
@@ -32,19 +34,22 @@ class Schachbrett:
         print("-"*32)
         
     def setzen_figuren_schachbrett(self):
-    
+        
+        symboleW = {Bauer : "♙", Turm : "♖", Springer : "♘", Läufer : "♗", König : "♔", Dame : "♕" }
+        symboleS = {Bauer : "♟", Turm : "♜", Springer : "♞", Läufer : "♝", König : "♛", Dame : "♚" }
+        figuren = [Turm,Springer,Läufer,Dame,König,Läufer,Springer,Turm]
         for i in range(0,8):
 
-            self.schachbrett[(i,1)] = Schachfigur("Weiß","♙")
-            self.schachbrett[(i,6)] = Schachfigur("Schwarz","♟")
+            self.schachbrett[(i,1)] = Bauer("Weiß",symboleW[Bauer],(i,1))
+            self.schachbrett[(i,6)] = Bauer("Schwarz",symboleS[Bauer], (i,1))
             
-            
-        symboleW = ["♖","♘","♗","♕","♔","♗","♘","♖"]
-        symboleS = ["♜","♞","♝","♚","♛","♝","♞","♜"]
+
+     
         
         for i in range(0,8):
-            self.schachbrett[(i,0)] = symboleW[i]
-            self.schachbrett[((7-i),7)] = symboleS[i]
+            self.schachbrett[(i,0)] = figuren[i]("Weiß",symboleW[figuren[i]],(i,0))
+            self.schachbrett[((7-i),7)] = figuren[i]("Schwarz",symboleS[figuren[i]],((7-i),7))
+
 
 
      
