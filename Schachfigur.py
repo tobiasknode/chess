@@ -38,7 +38,7 @@ class Schachfigur():
         """
         x = ord(zug[0])-97
         print("x: ",x)
-        y = zug[1]
+        y = zug[1]-1
         print("y: ",y)
         return (x,y)
 class Bauer(Schachfigur):
