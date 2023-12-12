@@ -47,11 +47,11 @@ class Spiel:
             except ValueError:
                 print("Oops!  That was no valid Zug.  Try again...")
          
-        self.__add_zug(zug.start, zug.ziel, spieler)
+        self.__add_zug(zug, spieler)
         print(spieler.zug_verlauf[-1])
 
-    def __add_zug(self, start, ziel, spieler):
-        spieler.zug_verlauf.append(Zug(start, ziel))
+    def __add_zug(self, zug, spieler):
+        spieler.zug_verlauf.append(zug)
         pass
 
     def __str2Tuple(self, string):
