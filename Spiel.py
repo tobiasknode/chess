@@ -1,7 +1,6 @@
 from Spieler import Spieler
 from Schachbrett import Schachbrett
 from Spielregeln import Spielregeln
-from Schachfigur import Schachfigur
 from Zug import Zug
 
 
@@ -47,7 +46,7 @@ class Spiel:
                 
                 self.spielregeln.ist_regelkonformer_zug(zug)
                 
-                self.schachbrett.schachbrett[0,1].bewegen(zug, self.schachbrett)   # das 0,1 sagt welche figur gezogen werden soll. 
+                self.schachbrett.schachbrett[0,1].bewegen(zug, self.schachbrett)   # das 0,1 sagt welche figur gezogen werden soll. Key Error wenn diese angabe nicht mit start_pos übereinstimmt!!!
                 
                 break
             except ValueError:
