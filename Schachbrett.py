@@ -36,7 +36,7 @@ class Schachbrett:
     def setzen_figuren_schachbrett(self):
         
         symboleW = {Bauer : "♙", Turm : "♖", Springer : "♘", Läufer : "♗", König : "♔", Dame : "♕" }
-        symboleS = {Bauer : "♟", Turm : "♜", Springer : "♞", Läufer : "♝", König : "♛", Dame : "♚" }
+        symboleS = {Bauer : "♟", Turm : "♜", Springer : "♞", Läufer : "♝", König : "♚", Dame : "♛" }
         figuren = [Turm,Springer,Läufer,Dame,König,Läufer,Springer,Turm]
         for i in range(0,8):
 
