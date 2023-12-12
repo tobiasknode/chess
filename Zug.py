@@ -1,7 +1,8 @@
 class Zug:
-    def __init__(self, start, ziel, spielfigur) -> None:
+    def __init__(self, start, ziel) -> None:
         self.start=start
         self.ziel=ziel
-        self.spielfigur=spielfigur
+    def __str__(self) -> str:
+        return f"Start: {self.start} Ziel: {self.ziel}"
         
 

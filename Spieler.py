@@ -11,7 +11,7 @@ class Spieler:
         return self.zug_verlauf
     def append_zug_verlauf(self, zug):
         self.zug_verlauf.append(zug)
-
+    
 
 
 #Unit test for Spieler.py
