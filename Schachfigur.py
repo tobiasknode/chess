@@ -18,12 +18,11 @@ class Schachfigur():
         return self.position
         
     def bewegen(self, zug, schachbrett):
-        self.position = self.__zug2xycorr(zug.ziel)
-        alte_position = self.__zug2xycorr(zug.start)
-#        print("start.position: ", alte_position)
-#        print("self.position: ", self.position)
-        schachbrett.schachbrett[self.position] = schachbrett.schachbrett[alte_position]
-        del schachbrett.schachbrett[alte_position]
+        ziel_pos = self.__zug2xycorr(zug.ziel)
+        start_pos = self.__zug2xycorr(zug.start)
+
+        schachbrett.schachbrett[ziel_pos] = schachbrett.schachbrett[start_pos]
+        del schachbrett.schachbrett[start_pos]
         
         
        # print(f"{self.farbe} {self.typ} bewegt sich nach {zug.ziel}")
