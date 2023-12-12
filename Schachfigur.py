@@ -1,4 +1,4 @@
-        
+import Zug as Zg     
     
 
 
@@ -14,15 +14,15 @@ class Schachfigur():
         return self.symbol
         
     def bewegen(self, zug):
-        neue_position=self.__zug3xycorr(zug.Ziel)
+        neue_position=self.__zug2xycorr(zug.ziel)
         self.position = neue_position
-        print(f"{self.farbe} {self.typ} bewegt sich nach {neue_position}")
-    def __zug3xycorr(self,zug):
+       # print(f"{self.farbe} {self.typ} bewegt sich nach {zug.ziel}")
+    def __zug2xycorr(self,zug):
         """
-        Zug in der Form "3e" wird in (2,4) umgewandelt
+        Zug in der Form "e4" wird in (2,4) umgewandelt
         """
-        x = ord(zug[1])-97
-        y = int(zug[0])-1
+        x = ord(zug[0])-97
+        y = int(zug[1])-1
         return (x,y)
 class Bauer(Schachfigur):
     
@@ -90,7 +90,9 @@ def main():    # nur ein Test der Klasse
     # Test eines Spielzugs
     
     print(f"Ausgangsposition: {bauer.position}")
-    bauer.bewegen((1,3))
+    zug=Zg.Zug(("c",4),("c",5))
+    print(f"Zug: {zug}")
+    bauer.bewegen(zug)
     print(f"Neue Position: {bauer.position}")
     
 

@@ -49,12 +49,8 @@ class Spiel:
                 print("Oops!  That was no valid Zug.  Try again...")
         print(f"Dein Zug ist {zug.start} zu {zug.ziel}")
         spieler.append_zug_verlauf(zug)
-        zugverlauf = spieler.get_zug_verlauf()   
+        zugverlauf = spieler.get_zug_verlauf()
         print(f"Zugverlauf von {spieler.name} ist {zugverlauf}")
-
-    def __add_zug(self, zug, spieler):
-        spieler.zug_verlauf.append(zug)
-        pass
 
     def __eingabe_regelkonform(self, zug_string):
         """
@@ -67,6 +63,7 @@ class Spiel:
         # Überprüfe die Länge des Strings
         if zug_string is None or len(zug_string) != 4:
             raise ValueError("Ungültige Eingabe")
+
         # Parse tuple
         zug_tupel = zug_string
         start_tuple = zug_tupel[0], int(zug_tupel[1])
@@ -82,5 +79,7 @@ class Spiel:
 
 
 if __name__ == "__main__":
+    x = ord("b")-97
+    print(x)
     spiel = Spiel()
     spiel.start()
