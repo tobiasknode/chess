@@ -10,8 +10,11 @@ class Spieler:
     def get_zug_verlauf(self):
         return self.zug_verlauf
     def append_zug_verlauf(self, zug):
-        self.zug_verlauf.append(zug)
-    
+        print(f"{zug.start+zug.ziel}")
+        self.zug_verlauf.append(f"{zug.start+zug.ziel}")
+    def __str__(self) -> str:
+        return "".join(self.zug_verlauf)
+
 
 
 #Unit test for Spieler.py
