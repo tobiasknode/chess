@@ -78,7 +78,7 @@ def main():    # nur ein Test der Klasse
     start_position = (1,2)
     farbe = "Weiß"
     
-    bauer = schachfigur(farbe, "Bauer", start_position)
+    bauer = Schachfigur(farbe, "Bauer", start_position)
     
     # Test eines Spielzugs
     
