@@ -1,6 +1,7 @@
 from Spieler import Spieler
 from Schachbrett import Schachbrett
 from Spielregeln import Spielregeln
+from Schachfigur import Schachfigur
 from Zug import Zug
 
 
@@ -43,10 +44,12 @@ class Spiel:
                 zug_string = input(f"|{spieler.get_name()}| gebe einen Zug ein (Start Ziel): ")
                 start_pos, ziel_pos = self.__eingabe_regelkonform(zug_string)
                 zug = Zug(start_pos, ziel_pos)
-                
+                x_start,y_start = self.zug2xycorr(start_pos)
                 self.spielregeln.ist_regelkonformer_zug(zug)
+                print("X",x_start)
+                print("Y",y_start)
                 
-                self.schachbrett.schachbrett[0,1].bewegen(zug, self.schachbrett)   # das 0,1 sagt welche figur gezogen werden soll. Key Error wenn diese angabe nicht mit start_pos übereinstimmt!!!
+                self.schachbrett.schachbrett[x_start,y_start].bewegen(zug, self.schachbrett)   
                 
                 break
             except ValueError:
@@ -55,6 +58,18 @@ class Spiel:
         spieler.append_zug_verlauf(zug)
         zugverlauf = spieler.get_zug_verlauf()
         print(f"Zugverlauf von {spieler.name} ist {zugverlauf}")
+    def zug2xycorr(self,zug):
+        """
+        Zug in der Form "b4" wird in (2,4) umgewandelt
+        das ASCII-Zeichen wird in eine Zahl umgewandelt und minus 96 gerechnet
+        a ist in ASCII 97, b ist 98, c ist 99 usw.
+        Dadurch wird aus a=1, b=2, c=3 ... h=8. 
+        """
+        x = ord(zug[0])-97
+        print("x: ",x)
+        y = zug[1]
+        print("y: ",y)
+        return (x,y)
 
     def __eingabe_regelkonform(self, zug_string):
         """

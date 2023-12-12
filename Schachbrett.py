@@ -51,7 +51,9 @@ class Schachbrett:
         for i in range(0,8):
             self.schachbrett[(i,0)] = figuren[i]("Weiß",symboleW[figuren[i]],(i,0))
             self.schachbrett[((7-i),7)] = figuren[i]("Schwarz",symboleS[figuren[i]],((7-i),7))
-
+            
+            
+   
 
 
      
