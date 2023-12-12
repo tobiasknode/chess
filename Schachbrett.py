@@ -68,7 +68,7 @@ def main():    # nur ein Test der Klasse
     schachbrett.anzeigen()
     print(schachbrett.schachbrett[(1,1)].get_position())
     print(schachbrett.schachbrett[(0,0)])
-    schachbrett.schachbrett[(1,1)].bewegen(zug)
+    schachbrett.schachbrett[(1,1)].bewegen(zug, schachbrett)
     print(schachbrett.schachbrett[(1,1)].get_position())
     
     schachbrett.anzeigen()
