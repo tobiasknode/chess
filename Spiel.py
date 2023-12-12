@@ -46,7 +46,7 @@ class Spiel:
                 self.spielregeln.ist_regelkonformer_zug(zug)
                 break
             except ValueError:
-                print("Oops!  That was no valid Zug.  Try again...")
+                print("Ungültige Eingabe.  Try again...")
         print(f"Dein Zug ist {zug.start} zu {zug.ziel}")
         spieler.append_zug_verlauf(zug)
         zugverlauf = spieler.get_zug_verlauf()
@@ -60,6 +60,8 @@ class Spiel:
 
         # Remove whitespaces
         zug_string = zug_string.replace(" ", "")
+        # Convert to lowercase
+        zug_string = zug_string.lower()
         # Überprüfe die Länge des Strings
         if zug_string is None or len(zug_string) != 4:
             raise ValueError("Ungültige Eingabe")
@@ -79,7 +81,6 @@ class Spiel:
 
 
 if __name__ == "__main__":
-    x = ord("b")-97
-    print(x)
+    
     spiel = Spiel()
     spiel.start()

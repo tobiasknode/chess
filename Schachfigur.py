@@ -19,10 +19,13 @@ class Schachfigur():
        # print(f"{self.farbe} {self.typ} bewegt sich nach {zug.ziel}")
     def __zug2xycorr(self,zug):
         """
-        Zug in der Form "e4" wird in (2,4) umgewandelt
+        Zug in der Form "b4" wird in (2,4) umgewandelt
+        das ASCII-Zeichen wird in eine Zahl umgewandelt und minus 96 gerechnet
+        a ist in ASCII 97, b ist 98, c ist 99 usw.
+        Dadurch wird aus a=1, b=2, c=3 ... h=8. 
         """
-        x = ord(zug[0])-97
-        y = int(zug[1])-1
+        x = ord(zug[0])-96
+        y = zug[1]
         return (x,y)
 class Bauer(Schachfigur):
     
