@@ -1,11 +1,5 @@
-
-class Name:
-    
-    def __init__(self,name):
-        self.name = name
         
     
-  
 
 
 class Schachfigur():
@@ -25,8 +19,7 @@ class Schachfigur():
         
         
         
-                
-        
+                    
         
 def main():    # nur ein Test der Klasse
     
