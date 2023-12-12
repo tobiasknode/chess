@@ -13,10 +13,17 @@ class Schachfigur():
         
         return self.symbol
         
-    def bewegen(self, neue_position):
+    def bewegen(self, zug):
+        neue_position=self.__zug3xycorr(zug.Ziel)
         self.position = neue_position
         print(f"{self.farbe} {self.typ} bewegt sich nach {neue_position}")
-        
+    def __zug3xycorr(self,zug):
+        """
+        Zug in der Form "3e" wird in (2,4) umgewandelt
+        """
+        x = ord(zug[1])-97
+        y = int(zug[0])-1
+        return (x,y)
 class Bauer(Schachfigur):
     
     def __init__(self,farbe,symbol,position):
@@ -78,7 +85,7 @@ def main():    # nur ein Test der Klasse
     start_position = (1,2)
     farbe = "Weiß"
     
-    bauer = schachfigur(farbe, "Bauer", start_position)
+    bauer = Schachfigur(farbe, "Bauer", start_position)
     
     # Test eines Spielzugs
     

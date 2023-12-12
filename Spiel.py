@@ -43,32 +43,29 @@ class Spiel:
                 zug_string = input(f"{spieler.get_name()} gebe einen Zug ein (xy xy): ")
                 start_pos, ziel_pos = self.__eingabe_regelkonform(zug_string)
                 zug = Zug(start_pos, ziel_pos)
+                self.spielregeln.ist_regelkonformer_zug(zug)
                 break
             except ValueError:
                 print("Oops!  That was no valid Zug.  Try again...")
-         
+
         self.__add_zug(zug, spieler)
+        
         print(spieler.zug_verlauf[-1])
 
     def __add_zug(self, zug, spieler):
         spieler.zug_verlauf.append(zug)
         pass
 
-    def __str2Tuple(self, string):
-        """
-        Konvertiert einen String in ein Tupel.
-        """
-        return tuple(string.split(" "))
     def __eingabe_regelkonform(self, zug_string):
         """
         Überprüft, ob die Eingabe regelkonform ist.
         """
         char_list = ["a", "b", "c", "d", "e", "f", "g", "h"]
 
-        #Remove whitespaces
+        # Remove whitespaces
         zug_string = zug_string.replace(" ", "")
         # Überprüfe die Länge des Strings
-        if  zug_string is None or len(zug_string) != 4:
+        if zug_string is None or len(zug_string) != 4:
             raise ValueError("Ungültige Eingabe")
         print(zug_string)
         # Parse tuple
@@ -78,7 +75,7 @@ class Spiel:
         # Überprüfe die einzelnen Elemente des Tuples
         if start_tuple[0] not in char_list or ziel_tuple[0] not in char_list:
             raise ValueError("Ungültige Eingabe")
-        
+
         if start_tuple[1] not in range(1, 9) or ziel_tuple[1] not in range(1, 9):
             raise ValueError("Ungültige Eingabe")
 
