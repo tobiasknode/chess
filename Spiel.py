@@ -40,7 +40,7 @@ class Spiel:
         zug = None
         while True:
             try:
-                zug_string = input(f"{spieler.get_name()} gebe einen Zug ein (xy xy): ")
+                zug_string = input(f"|{spieler.get_name()}| gebe einen Zug ein (Start Ziel): ")
                 start_pos, ziel_pos = self.__eingabe_regelkonform(zug_string)
                 zug = Zug(start_pos, ziel_pos)
                 self.spielregeln.ist_regelkonformer_zug(zug)
@@ -81,6 +81,5 @@ class Spiel:
 
 
 if __name__ == "__main__":
-    
     spiel = Spiel()
     spiel.start()

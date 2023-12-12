@@ -61,7 +61,7 @@ class Schachbrett:
 def main():    # nur ein Test der Klasse
     
     print("Hello Schachbrett")
-    zug = Zug(("a",1),"a",2))
+    zug = Zug(("a",1),("a",2))
     
     schachbrett = Schachbrett()
     
