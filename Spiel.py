@@ -49,7 +49,7 @@ class Spiel:
                 print("X",x_start)
                 print("Y",y_start)
                 
-                self.schachbrett.schachbrett[x_start,y_start].bewegen(zug, self.schachbrett)   
+                self.schachbrett.schachbrett[x_start, y_start].bewegen(zug, self.schachbrett)   
                 
                 break
             except ValueError:
