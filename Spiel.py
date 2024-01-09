@@ -3,20 +3,20 @@ from Schachbrett import Schachbrett
 from Spielregeln import Spielregeln
 from Schachfigur import Schachfigur
 from Zug import Zug
-
+from View import View
 
 class Spiel:
     def __init__(self) -> None:
         self.spieler1 = Spieler("", "")  #
         self.spieler2 = Spieler()
         self.schachbrett = Schachbrett()
-        self.spielregeln = Spielregeln(self.schachbrett)
-
+        self.spielregeln = Spielregeln()
+        self.View = View()
     def __erstelle_spieler(self):
         self.spieler1.name = input("Spieler Weiß nenne deinen Namen:")
-        self.spieler1.farbe = "w"
+        self.spieler1.farbe = "Weiß"
         self.spieler2.name = input("Spieler Schwarz nenne deinen Namen:")
-        self.spieler2.farbe = "s"
+        self.spieler2.farbe = "Schwarz"
 
     def stop(self):
         pass
@@ -25,7 +25,7 @@ class Spiel:
         aktueller_spieler = self.spieler1
         self.__erstelle_spieler()
         while True:
-            self.schachbrett.anzeigen()
+            self.View.show(self.schachbrett)
             self.__führe_zug_aus(aktueller_spieler)
 
             # Nach jeder Runde wird der aktuelle Spieler gewechselt.
@@ -41,23 +41,22 @@ class Spiel:
         zug = None
         while True:
             try:
+                # Frage den Spieler nach einem Zug
                 zug_string = input(f"|{spieler.get_name()}| gebe einen Zug ein (Start Ziel): ")
+                # Überprüfe, ob die Eingabe regelkonform ist und parsed sie in ein Tupel
                 start_pos, ziel_pos = self.__eingabe_regelkonform(zug_string)
+                # Erstelle ein Zug-Objekt
                 zug = Zug(start_pos, ziel_pos)
-                x_start,y_start = self.zug2xycorr(start_pos)
-                self.spielregeln.ist_regelkonformer_zug(zug)
-                print("X",x_start)
-                print("Y",y_start)
-                
-                self.schachbrett.schachbrett[x_start, y_start].bewegen(zug, self.schachbrett)   
-                
+                # Überprüfe, ob der Zug regelkonform ist.
+                if (self.spielregeln.ist_regelkonformer_zug(spieler, zug, self.schachbrett)):
+                    self.schachbrett.bewegen(zug)
                 break
             except ValueError:
-                print("Ungültige Eingabe.  Try again...")
-        print(f"Dein Zug ist {zug.start} zu {zug.ziel}")
-        spieler.append_zug_verlauf(zug)
-        zugverlauf = spieler.get_zug_verlauf()
-        print(f"Zugverlauf von {spieler.name} ist {zugverlauf}")
+                print("Ungültige Eingabe. Try again...")
+        #print(f"Dein Zug ist {zug.start} zu {zug.ziel}")
+        #spieler.append_zug_verlauf(zug)
+        #zugverlauf = spieler.get_zug_verlauf()
+        #print(f"Zugverlauf von {spieler.name} ist {zugverlauf}")
     def zug2xycorr(self,zug):
         """
         Zug in der Form "b4" wird in (2,4) umgewandelt
