@@ -5,19 +5,27 @@ from Schachfigur import Schachfigur
 from Zug import Zug
 from View import View
 
+
 class Spiel:
+    _instance = None
     def __init__(self) -> None:
         self.spieler1 = Spieler("", "")  #
         self.spieler2 = Spieler()
         self.schachbrett = Schachbrett()
         self.spielregeln = Spielregeln()
         self.View = View()
+
     def __erstelle_spieler(self):
         self.spieler1.name = input("Spieler Weiß nenne deinen Namen:")
         self.spieler1.farbe = "Weiß"
         self.spieler2.name = input("Spieler Schwarz nenne deinen Namen:")
         self.spieler2.farbe = "Schwarz"
 
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(Spiel, cls).__new__(cls)
+            # Initialisierung der Instanz kann hier erfolgen
+        return cls._instance
     def stop(self):
         pass
 
@@ -38,64 +46,33 @@ class Spiel:
         """
         Führt einen Zug aus, wenn der Zug regelkonform ist.
         """
-        zug = None
-        while True:
-            try:
-                # Frage den Spieler nach einem Zug
-                zug_string = input(f"|{spieler.get_name()}| gebe einen Zug ein (Start Ziel): ")
-                # Überprüfe, ob die Eingabe regelkonform ist und parsed sie in ein Tupel
-                start_pos, ziel_pos = self.__eingabe_regelkonform(zug_string)
-                # Erstelle ein Zug-Objekt
-                zug = Zug(start_pos, ziel_pos)
-                # Überprüfe, ob der Zug regelkonform ist.
-                if (self.spielregeln.ist_regelkonformer_zug(spieler, zug, self.schachbrett)):
-                    self.schachbrett.bewegen(zug)
-                break
-            except ValueError:
-                print("Ungültige Eingabe. Try again...")
-        #print(f"Dein Zug ist {zug.start} zu {zug.ziel}")
-        #spieler.append_zug_verlauf(zug)
-        #zugverlauf = spieler.get_zug_verlauf()
-        #print(f"Zugverlauf von {spieler.name} ist {zugverlauf}")
-    def zug2xycorr(self,zug):
+        zug = False
+        while not zug:
+            zug_raw = input(f"|{spieler.get_name()}| gebe einen Zug ein (Start Ziel): ")
+            zug = self.spielregeln.eingabe_regelkonform(spieler, self.schachbrett, zug_raw)
+
+        
+        self.schachbrett.bewegen(zug)
+           
+        # print(f"Dein Zug ist {zug.start} zu {zug.ziel}")
+        # spieler.append_zug_verlauf(zug)
+        # zugverlauf = spieler.get_zug_verlauf()
+        # print(f"Zugverlauf von {spieler.name} ist {zugverlauf}")
+
+    def zug2xycorr(self, zug):
         """
         Zug in der Form "b4" wird in (2,4) umgewandelt
         das ASCII-Zeichen wird in eine Zahl umgewandelt und minus 96 gerechnet
         a ist in ASCII 97, b ist 98, c ist 99 usw.
-        Dadurch wird aus a=1, b=2, c=3 ... h=8. 
+        Dadurch wird aus a=1, b=2, c=3 ... h=8.
         """
-        x = ord(zug[0])-97
-        print("x: ",x)
+        x = ord(zug[0]) - 97
+        print("x: ", x)
         y = zug[1]
-        print("y: ",y)
-        return (x,y)
+        print("y: ", y)
+        return (x, y)
 
-    def __eingabe_regelkonform(self, zug_string):
-        """
-        Überprüft, ob die Eingabe regelkonform ist.
-        """
-        char_list = ["a", "b", "c", "d", "e", "f", "g", "h"]
-
-        # Remove whitespaces
-        zug_string = zug_string.replace(" ", "")
-        # Convert to lowercase
-        zug_string = zug_string.lower()
-        # Überprüfe die Länge des Strings
-        if zug_string is None or len(zug_string) != 4:
-            raise ValueError("Ungültige Eingabe")
-
-        # Parse tuple
-        zug_tupel = zug_string
-        start_tuple = zug_tupel[0], int(zug_tupel[1])
-        ziel_tuple = zug_tupel[2], int(zug_tupel[3])
-        # Überprüfe die einzelnen Elemente des Tuples
-        if start_tuple[0] not in char_list or ziel_tuple[0] not in char_list:
-            raise ValueError("Ungültige Eingabe")
-
-        if start_tuple[1] not in range(1, 9) or ziel_tuple[1] not in range(1, 9):
-            raise ValueError("Ungültige Eingabe")
-
-        return start_tuple, ziel_tuple
+    
 
 
 if __name__ == "__main__":
