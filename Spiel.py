@@ -48,14 +48,14 @@ class Spiel:
         """
         zug = False
         while not zug:
-            zug_raw = input(f"|{spieler.get_name()}| gebe einen Zug ein (Start Ziel): ")
+            zug_raw = input(f"|{spieler.get_name()}|, {spieler.get_farbe()}  gebe einen Zug ein (Start Ziel): ")
             zug = self.spielregeln.eingabe_regelkonform(spieler, self.schachbrett, zug_raw)
 
         
         self.schachbrett.bewegen(zug)
            
         # print(f"Dein Zug ist {zug.start} zu {zug.ziel}")
-        # spieler.append_zug_verlauf(zug)
+        spieler.append_zug_verlauf(zug)
         # zugverlauf = spieler.get_zug_verlauf()
         # print(f"Zugverlauf von {spieler.name} ist {zugverlauf}")
 

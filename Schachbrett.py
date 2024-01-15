@@ -18,6 +18,7 @@ class Schachbrett:
         x_ziel,y_ziel = zug.get_Ziel()
         schachfigur = self.schachfiguren.suche_schachfigur((x_start, y_start))
         self.schachfiguren.entferne_schachfigur((x_start, y_start))
+        self.schachfiguren.entferne_schachfigur((x_ziel, y_ziel))
         schachfigur.position = (x_ziel, y_ziel)
         self.schachfiguren.set_schachfigur(schachfigur)
         
