@@ -9,7 +9,7 @@ from View import View
 class Spiel:
     _instance = None
     def __init__(self) -> None:
-        self.spieler1 = Spieler("", "")  #
+        self.spieler1 = Spieler()  #
         self.spieler2 = Spieler()
         self.schachbrett = Schachbrett()
         self.spielregeln = Spielregeln()

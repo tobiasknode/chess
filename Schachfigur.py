@@ -104,18 +104,30 @@ class Schachfiguren:
 
 
 
+class Figur:
+    def __init__(self):
+        self.name  # Name der Figur
+        self.index
+        self.farbe
+        self.symbol
+        self.position  # touple (x,y) Koordinaten
 
-
-
+class Schachfigur(Figur):
+    def __init__(self, name, index, farbe, symbol, position):
+        self.name = name  # Name der Figur
+        self.index = index  # Welche Figur von den zwei
+        self.farbe = farbe
+        self.symbol = symbol
+        self.position = position 
         
-class Schachfigur:
+"""class Schachfigur:
     def __init__(self, name, index, farbe, symbol, position):
         self.name = name  # Name der Figur
         self.index = index  # Welche Figur von den zwei
         self.farbe = farbe
         self.symbol = symbol
         self.position = position  # touple (x,y) Koordinaten
-        
+ """       
     
 
 def main():  # nur ein Test der Klasse
